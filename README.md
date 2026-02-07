@@ -1,127 +1,127 @@
 # 🚀 Claude-AppsScript-Pro v3.1.0
-## Google Apps Script開発を革命的に効率化するMCPサーバー
+## An MCP Server that Revolutionizes Google Apps Script Development Efficiency
 
-Claude-AppsScript-Pro は、**61ツール統合**・**AI自律開発**・**リアルタイムブラウザデバッグ**により、Google Apps Script開発の**99%出力削減**と**10倍デバッグ効率向上**を実現する革命的プラットフォームです。
+Claude-AppsScript-Pro is a revolutionary platform that achieves **99% output reduction** and **10x debugging efficiency improvement** for Google Apps Script development through **61 integrated tools**, **AI autonomous development**, and **real-time browser debugging**.
 
-### ✨ 主要機能・革新的価値
+### ✨ Key Features & Innovative Value
 
-| 機能カテゴリ | ツール数 | 革新的価値 |
+| Feature Category | Tools | Innovative Value |
 |-------------|---------|------------|
-| 🤖 **AI自律ワークフロー** | 4 | 自然言語指示→完全システム構築 |
-| 🌐 **WebApp完全統合** | 6 | ワンクリックデプロイ・本格運用 |
-| 🔍 **リアルタイムデバッグ** | 8 | 実ブラウザ制御・即時エラー特定 |
-| 📊 **Spreadsheet高度操作** | 18 | 読み書き・分析・最適化・権限管理 |
-| 🎯 **継続開発支援** | 25 | パッチ・検証・最適化・実行制御 |
+| 🤖 **AI Autonomous Workflow** | 4 | Natural language instructions → Complete system construction |
+| 🌐 **WebApp Full Integration** | 6 | One-click deploy & production operation |
+| 🔍 **Real-time Debugging** | 8 | Real browser control & instant error identification |
+| 📊 **Advanced Spreadsheet Operations** | 18 | Read/write, analysis, optimization & permission management |
+| 🎯 **Continuous Development Support** | 25 | Patching, verification, optimization & execution control |
 
-**🎯 実現できること：**
-- 「タスク管理システムを作ってWebで公開して」→ 5分で完全なシステム構築
-- 「売上データから月次レポートを自動生成したい」→ AI が最適ツールチェーンを自動実行
-- 「WebアプリでJavaScriptエラーが出てる」→ 実ブラウザでリアルタイムデバッグ・自動修正
+**🎯 What You Can Achieve:**
+- "Build a task management system and publish it on the web" → Complete system built in 5 minutes
+- "I want to auto-generate monthly reports from sales data" → AI automatically selects and executes the optimal tool chain
+- "There's a JavaScript error in my web app" → Real-time debugging in a real browser with automatic fixes
 
 ---
 
-## 🛠️ 事前準備（5分）
+## 🛠️ Prerequisites (5 minutes)
 
-### 必須ソフトウェア
+### Required Software
 
-✅ **Node.js v18.0.0以上** - [ダウンロード](https://nodejs.org/)  
-✅ **Git** - [ダウンロード](https://git-scm.com/)  
-✅ **Claude Desktop 最新版** - [ダウンロード](https://claude.ai/download)
+✅ **Node.js v18.0.0 or higher** - [Download](https://nodejs.org/)  
+✅ **Git** - [Download](https://git-scm.com/)  
+✅ **Claude Desktop Latest Version** - [Download](https://claude.ai/download)
 
-**⚠️ Windows重要注意事項：**
-- Node.jsインストール時：「Automatically install the necessary tools」は**チェック外す**
-- インストール完了後：**PC再起動必須**
+**⚠️ Important Notes for Windows:**
+- During Node.js installation: **Uncheck** "Automatically install the necessary tools"
+- After installation: **PC restart is required**
 
-### Google Cloud Platform準備
+### Google Cloud Platform Setup
 
-1. **GCPアカウント作成** - [console.cloud.google.com](https://console.cloud.google.com)
-2. **新規プロジェクト作成**
-3. **3つのAPI有効化**：
+1. **Create a GCP account** - [console.cloud.google.com](https://console.cloud.google.com)
+2. **Create a new project**
+3. **Enable 3 APIs**:
    - Google Apps Script API
    - Google Drive API  
    - Google Sheets API
-4. **OAuth 2.0 クライアント作成**：
-   - タイプ：**「Webアプリケーション」**（重要）
-   - リダイレクトURI：`http://localhost:3001/oauth/callback`
-5. **クライアント設定のjsonファイルを必ずダウンロードしておいてください。**
+4. **Create an OAuth 2.0 client**:
+   - Type: **"Web application"** (important)
+   - Redirect URI: `http://localhost:3001/oauth/callback`
+5. **Make sure to download the client configuration JSON file.**
 
-### 🔐 必須OAuth スコープ設定
+### 🔐 Required OAuth Scopes Configuration
 
-Claude-AppsScript-Pro の61ツール機能を実現するため、以下の**4つの必須スコープ**が自動設定されます：
+To enable all 61 tools of Claude-AppsScript-Pro, the following **4 required scopes** are automatically configured:
 
-| スコープURL | 機能説明 | 対応ツール例 |
+| Scope URL | Description | Applicable Tools |
 |-------------|----------|--------------|
-| `https://www.googleapis.com/auth/script.projects` | **Apps Script プロジェクト作成・更新** | システム構築・デプロイ・管理 |
-| `https://www.googleapis.com/auth/script.deployments` | **Apps Script デプロイ作成・更新** | WebApp公開・バージョン管理 |
-| `https://www.googleapis.com/auth/drive` | **Google Drive ファイル操作** | スプレッドシート作成・管理 |
-| `https://www.googleapis.com/auth/spreadsheets` | **スプレッドシート操作** | データ読み書き・分析・最適化 |
+| `https://www.googleapis.com/auth/script.projects` | **Apps Script project creation & updates** | System construction, deployment & management |
+| `https://www.googleapis.com/auth/script.deployments` | **Apps Script deployment creation & updates** | WebApp publishing & version management |
+| `https://www.googleapis.com/auth/drive` | **Google Drive file operations** | Spreadsheet creation & management |
+| `https://www.googleapis.com/auth/spreadsheets` | **Spreadsheet operations** | Data read/write, analysis & optimization |
 
-**📋 Google Cloud Console での設定：**
-- これらのスコープは**自動的にOAuth認証時に設定**されます
-- 手動設定は不要ですが、OAuth クライアント作成時に「**Webアプリケーション**」を選択することが重要
-- 企業環境では管理者による事前承認が必要な場合があります
+**📋 Configuration in Google Cloud Console:**
+- These scopes are **automatically configured during OAuth authentication**
+- Manual configuration is not required, but it is important to select **"Web application"** when creating the OAuth client
+- In enterprise environments, pre-approval by an administrator may be required
 
-**⚠️ 追加機能利用時の拡張スコープ：**
-将来的に以下の高度機能を利用する場合、追加スコープが必要になる可能性があります：
-- `https://www.googleapis.com/auth/script.triggers` - トリガー管理
-- `https://www.googleapis.com/auth/script.processes` - プロセス監視
-- `https://www.googleapis.com/auth/script.external_request` - 外部API連携
+**⚠️ Extended Scopes for Additional Features:**
+If you plan to use the following advanced features in the future, additional scopes may be required:
+- `https://www.googleapis.com/auth/script.triggers` - Trigger management
+- `https://www.googleapis.com/auth/script.processes` - Process monitoring
+- `https://www.googleapis.com/auth/script.external_request` - External API integration
 
-### チェックリスト
+### Checklist
 
-- [ ] Node.js インストール確認：`node --version`
-- [ ] Git インストール確認：`git --version`
-- [ ] Claude Desktop インストール完了
-- [ ] GCPプロジェクト作成完了
-- [ ] OAuth クライアントID・シークレット取得完了
-- [ ] **OAuth スコープ理解完了**（自動設定されることを確認）
+- [ ] Node.js installation confirmed: `node --version`
+- [ ] Git installation confirmed: `git --version`
+- [ ] Claude Desktop installation complete
+- [ ] GCP project created
+- [ ] OAuth Client ID & Secret obtained
+- [ ] **OAuth scopes understood** (confirmed they are automatically configured)
 
 ---
 
-## ⚠️ 重要：事前準備必須確認
+## ⚠️ Important: Verify Prerequisites Before Installation
 
-**ワンクリックインストール実行前に必ず確認してください：**
+**Please confirm the following before running the one-click installation:**
 
-### 📋 必須ソフトウェア確認
+### 📋 Required Software Verification
 ```powershell
-# PowerShellで以下を実行し、全て正常に表示されることを確認
+# Run the following in PowerShell and confirm all display correctly
 git --version
 node --version
 npm --version
 ```
 
-**エラーが出る場合：**
-- ❌ `'git' が認識されません` → [Git](https://git-scm.com/) をインストール・PC再起動
-- ❌ `'node' が認識されません` → [Node.js](https://nodejs.org/) をインストール・PC再起動
+**If you get errors:**
+- ❌ `'git' is not recognized` → Install [Git](https://git-scm.com/) and restart your PC
+- ❌ `'node' is not recognized` → Install [Node.js](https://nodejs.org/) and restart your PC
 
-### 🎯 代替手順（Git未インストールの場合）
-Gitをインストールしたくない場合：
-1. **[ZIPダウンロード](https://github.com/overdozer1124/claude-appsscript-pro/archive/refs/heads/main.zip)**
-2. Node.jsのみインストール
-3. 解凍後：`npm install` → `.\install-auto.bat`
+### 🎯 Alternative Steps (If Git Is Not Installed)
+If you don't want to install Git:
+1. **[Download ZIP](https://github.com/overdozer1124/claude-appsscript-pro/archive/refs/heads/main.zip)**
+2. Install only Node.js
+3. After extracting: `npm install` → `.\install-auto.bat`
 
 ---
 
-## ⚡ ワンクリックインストール
+## ⚡ One-Click Installation
 
-### Windows（完全自動・最推奨）🔥
+### Windows (Fully Automatic & Most Recommended) 🔥
 
 ```powershell
-# 🚀 PowerShell完全自動セットアップ（PATH問題解決版・最推奨）
+# 🚀 PowerShell Fully Automatic Setup (PATH Issue Resolved Version - Most Recommended)
 powershell -ExecutionPolicy RemoteSigned -Command "if(!(Test-Path ~\AppData\Roaming\Claude\MCP)){mkdir ~\AppData\Roaming\Claude\MCP -Force}; cd ~\AppData\Roaming\Claude\MCP; if(Test-Path claude-appsscript-pro){cd claude-appsscript-pro; git pull; cd ..} else {git clone https://github.com/overdozer1124/claude-appsscript-pro.git}; cd claude-appsscript-pro; .\install-auto.bat"
 ```
 
-**特徴:**
-✅ PowerShell実行ポリシー自動修正
-✅ WebアプリOAuth自動設定  
-✅ 既存MCP設定完全保護
-✅ エラー自動復旧
-✅ 3分完全セットアップ
+**Features:**
+✅ Automatic PowerShell execution policy fix
+✅ WebApp OAuth automatic configuration  
+✅ Full protection of existing MCP settings
+✅ Automatic error recovery
+✅ Complete setup in 3 minutes
 
-#### npm installエラー時の代替手順（Windows）
+#### Alternative Steps When npm install Fails (Windows)
 
 ```powershell
-# npm installエラーが発生した場合の手動解決手順
+# Manual resolution steps when npm install error occurs
 cd ~\AppData\Roaming\Claude\MCP\claude-appsscript-pro
 $env:NODE_PATH = ""
 $env:NPM_CONFIG_PREFIX = ""
@@ -129,374 +129,374 @@ npm install
 .\install-auto.bat
 ```
 
-**使用タイミング**: install-auto.bat実行中にnpm installエラーが発生した場合
+**When to use**: When an npm install error occurs during install-auto.bat execution
 
 ### macOS
 
 ```bash
-# ターミナルで実行
+# Run in Terminal
 curl -fsSL https://raw.githubusercontent.com/overdozer1124/claude-appsscript-pro/main/install.sh | bash
 ```
 
 ### Linux
 
 ```bash
-# ターミナルで実行
+# Run in Terminal
 curl -fsSL https://raw.githubusercontent.com/overdozer1124/claude-appsscript-pro/main/install.sh | bash
 ```
 
-### Git未インストールの場合（ZIPダウンロード版）
+### If Git Is Not Installed (ZIP Download Version)
 
-1. **[ZIPダウンロード](https://github.com/overdozer1124/claude-appsscript-pro/archive/refs/heads/main.zip)**
-2. 解凍後、フォルダ内で：
+1. **[Download ZIP](https://github.com/overdozer1124/claude-appsscript-pro/archive/refs/heads/main.zip)**
+2. After extracting, in the folder:
 
-**Windows：**
+**Windows:**
 ```powershell
 npm install; .\install-auto.bat
 ```
 
-**macOS/Linux：**
+**macOS/Linux:**
 ```bash
 npm install && chmod +x install.sh && ./install.sh
 ```
 
 ---
 
-## 🔐 OAuth認証設定（自動起動）
+## 🔐 OAuth Authentication Setup (Auto-Launch)
 
-上記のインストールコマンド実行後、OAuth認証設定が自動的に開始されます。
+After running the installation command above, the OAuth authentication setup will start automatically.
 
-### Windows版 - WebアプリOAuth設定 🚀
+### Windows Version - WebApp OAuth Setup 🚀
 
-**✨ 革命的JSONアップロード機能**
+**✨ Revolutionary JSON Upload Feature**
 
-ワンクリックコマンド実行後、自動的に以下が起動します：
+After running the one-click command, the following will launch automatically:
 
-1. **Webブラウザ自動起動**
-   - `http://localhost:3001/setup` が自動で開きます
-   - 美しいUI付きのOAuth設定画面が表示
+1. **Web browser auto-launch**
+   - `http://localhost:3001/setup` opens automatically
+   - A beautifully designed OAuth setup screen is displayed
 
-2. **Google Cloud Console準備**
+2. **Google Cloud Console Preparation**
    ```
-   📋 事前準備（上記で完了済み）：
-   ✅ GCPプロジェクト作成
-   ✅ 3つのAPI有効化  
-   ✅ OAuth 2.0 クライアント作成（Webアプリケーション）
-   ✅ リダイレクトURI: http://localhost:3001/oauth/callback
+   📋 Prerequisites (already completed above):
+   ✅ GCP project created
+   ✅ 3 APIs enabled  
+   ✅ OAuth 2.0 client created (Web application)
+   ✅ Redirect URI: http://localhost:3001/oauth/callback
    ```
 
-3. **JSONファイルダウンロード**
+3. **JSON File Download**
    - Google Cloud Console → APIs & Services → Credentials
-   - 作成したOAuth 2.0 クライアントIDの右端「⬇️」ボタンクリック
-   - JSONファイルダウンロード
+   - Click the "⬇️" button on the right side of the OAuth 2.0 Client ID you created
+   - Download the JSON file
 
-4. **JSONファイルアップロード**
-   - ダウンロードしたJSONファイルを画面にドラッグ&ドロップ
-   - または「クリックしてファイル選択」
-   - 自動検証・設定確認
+4. **JSON File Upload**
+   - Drag & drop the downloaded JSON file onto the screen
+   - Or click "Choose file"
+   - Automatic validation & configuration confirmation
 
-5. **Google認証完了**
-   - 「Google認証を開始」ボタンクリック
-   - ブラウザでGoogle認証完了
-   - 自動的に設定保存・完了
+5. **Complete Google Authentication**
+   - Click the "Start Google Authentication" button
+   - Complete Google authentication in the browser
+   - Settings are automatically saved & completed
 
-**⚡ 所要時間：2-3分**
+**⚡ Time required: 2-3 minutes**
 
-### macOS/Linux版 - ターミナルOAuth設定
+### macOS/Linux Version - Terminal OAuth Setup
 
-インストール後、ターミナルで対話的なOAuth設定が開始されます：
+After installation, an interactive OAuth setup will begin in the terminal:
 
-1. **Client ID入力**：Google Cloud Consoleからコピペ
-2. **Client Secret入力**：非表示で安全入力
-3. **ブラウザ認証**：自動起動でGoogle認証
-4. **設定完了**：自動的に.envファイル更新
+1. **Enter Client ID**: Copy & paste from Google Cloud Console
+2. **Enter Client Secret**: Secure hidden input
+3. **Browser Authentication**: Auto-launch for Google authentication
+4. **Setup Complete**: .env file automatically updated
 
-**⚡ 所要時間：5-8分**
+**⚡ Time required: 5-8 minutes**
 
 ---
 
-## ✅ インストール成功確認
+## ✅ Verifying Successful Installation
 
-### 1. Claude Desktop再起動
+### 1. Restart Claude Desktop
 
-1. Claude Desktop を完全終了
-2. Claude Desktop を再起動
+1. Completely close Claude Desktop
+2. Restart Claude Desktop
 
-### 2. 接続テスト
+### 2. Connection Test
 
-Claude内で以下を実行：
+Run the following in Claude:
 
 ```
 claude-appsscript-pro:test_connection
 ```
 
-**成功時の表示：**
+**On success:**
 ```
-✅ MCP接続：正常
-✅ Google APIs：認証済み
-✅ ツール数：61個
-✅ 準備完了：Claude-AppsScript-Pro v3.1.0
-✅ 準備完了：Claude-AppsScript-Pro v3.1.0
-```
-
-### 3. 基本操作テスト
-
-```
-「簡単なタスク管理システムを作ってWebで使えるようにして」
+✅ MCP Connection: Normal
+✅ Google APIs: Authenticated
+✅ Tools: 61
+✅ Ready: Claude-AppsScript-Pro v3.1.0
+✅ Ready: Claude-AppsScript-Pro v3.1.0
 ```
 
-→ 5分以内に完全なシステムが構築されれば成功🎉
+### 3. Basic Operation Test
+
+```
+"Build a simple task management system and make it available on the web"
+```
+
+→ If a complete system is built within 5 minutes, it's a success 🎉
 
 ---
 
-## 🔧 トラブルシューティング
+## 🔧 Troubleshooting
 
-### よくある問題TOP5
+### Top 5 Common Issues
 
-#### 1. Node.jsが認識されない（Windows）
-**症状：** `'node' is not recognized as an internal or external command`
+#### 1. Node.js Is Not Recognized (Windows)
+**Symptom:** `'node' is not recognized as an internal or external command`
 
-**解決策：**
+**Solution:**
 ```powershell
-# 絶対パスで実行
+# Run with absolute path
 "C:\Program Files\nodejs\node.exe" --version
 
-# または環境変数PATHに追加後、PC再起動
+# Or add to PATH environment variable and restart PC
 ```
 
-**根本解決：** Node.jsをPATHに追加（詳細：setup-windows-path.md参照）
+**Permanent fix:** Add Node.js to PATH (see setup-windows-path.md for details)
 
-#### 2. MCPサーバーが認識されない
-**症状：** Claude内でツールが表示されない
+#### 2. MCP Server Is Not Recognized
+**Symptom:** Tools are not displayed in Claude
 
-**解決策：**
+**Solution:**
 ```bash
-# Claude Desktop設定確認
+# Check Claude Desktop configuration
 notepad "%APPDATA%\Claude\claude_desktop_config.json"  # Windows
 open ~/Library/Application\ Support/Claude/claude_desktop_config.json  # macOS
 nano ~/.config/Claude/claude_desktop_config.json  # Linux
 ```
 
-**設定例：**
+**Configuration example:**
 ```json
 {
   "mcpServers": {
     "claude-appsscript-pro": {
-      "command": "/絶対パス/to/node",
-      "args": ["/絶対パス/to/claude-appsscript-pro/server.js"],
-      "cwd": "/絶対パス/to/claude-appsscript-pro"
+      "command": "/absolute/path/to/node",
+      "args": ["/absolute/path/to/claude-appsscript-pro/server.js"],
+      "cwd": "/absolute/path/to/claude-appsscript-pro"
     }
   }
 }
 ```
 
-#### 3. OAuth認証エラー
-**症状：** `redirect_uri_mismatch`
+#### 3. OAuth Authentication Error
+**Symptom:** `redirect_uri_mismatch`
 
-**解決策：**
-- GCPでOAuthクライアントを**「Webアプリケーション」**として再作成
-- リダイレクトURI：`http://localhost:3001/oauth/callback`
+**Solution:**
+- Recreate the OAuth client in GCP as **"Web application"**
+- Redirect URI: `http://localhost:3001/oauth/callback`
 
-**Windows版：**
-- WebアプリOAuth設定（JSONアップロード）を利用
-- 自動起動しない場合：`node scripts/oauth-setup.cjs --web`
+**Windows version:**
+- Use WebApp OAuth setup (JSON upload)
+- If it doesn't auto-launch: `node scripts/oauth-setup.cjs --web`
 
-**macOS/Linux版：**
-- ターミナルでの対話的設定
-- 再実行：`npm run oauth-setup`
+**macOS/Linux version:**
+- Interactive setup in terminal
+- Re-run: `npm run oauth-setup`
 
-#### 4. 構文エラー
-**症状：** `SyntaxError: Invalid regular expression flags`
+#### 4. Syntax Error
+**Symptom:** `SyntaxError: Invalid regular expression flags`
 
-**解決策：**
+**Solution:**
 ```bash
-# Node.jsバージョン確認（v18.0.0以上必要）
+# Check Node.js version (v18.0.0 or higher required)
 node --version
 
-# v18未満の場合はアップデート
+# Update if below v18
 ```
 
-#### 5. 大容量ファイルエラー
-**症状：** GitHub push時 100MB超過エラー
+#### 5. Large File Error
+**Symptom:** 100MB+ file size error during GitHub push
 
-**解決策：**
+**Solution:**
 ```bash
-# .gitignore確認・追加
+# Check/add to .gitignore
 echo "node_modules/" >> .gitignore
 echo "*.log" >> .gitignore
-git rm --cached [大容量ファイル]
+git rm --cached [large-file]
 ```
 
-### 詳細サポート
+### Detailed Support
 
-**Windows版問題：**
-- 📄 **Windows用Node.js PATH設定ガイド.txt**：PATH設定詳細
-- 🔧 **install-auto.bat問題**：`type install-auto.log` でログ確認
+**Windows-specific issues:**
+- 📄 **Windows Node.js PATH Configuration Guide.txt**: Detailed PATH setup
+- 🔧 **install-auto.bat issues**: Check logs with `type install-auto.log`
 
-**全プラットフォーム共通：**
-- 📄 **TROUBLESHOOTING.md**：詳細トラブルシューティング
-- 🐛 **GitHub Issues**：バグ報告・機能要請
-- 💬 **GitHub Discussions**：コミュニティサポート
+**All platforms:**
+- 📄 **TROUBLESHOOTING.md**: Detailed troubleshooting guide
+- 🐛 **GitHub Issues**: Bug reports & feature requests
+- 💬 **GitHub Discussions**: Community support
 
 ---
 
-## 📚 使用方法・実践例
+## 📚 Usage & Practical Examples
 
-### 🤖 AI自律開発（最大の特徴）
+### 🤖 AI Autonomous Development (Key Feature)
 
 ```
-「顧客管理システムを作成してリアルタイムでデータを確認したい」
-→ Claude が自動的に最適なツールチェーンを選択・実行
+"Create a customer management system and let me check data in real-time"
+→ Claude automatically selects and executes the optimal tool chain
 
-「売上データから月次レポートを自動生成したい」  
-→ データ分析・レポート作成・自動配信まで完全自動化
+"I want to auto-generate monthly reports from sales data"  
+→ Fully automated from data analysis to report creation to auto-distribution
 
-「WebアプリでJavaScriptエラーが出てるから調べて直して」
-→ 実ブラウザでのエラー監視・修正コード適用・動作確認まで自動実行
+"There's a JavaScript error in my web app, find it and fix it"
+→ Automatic execution from error monitoring in a real browser to applying fix code to verifying behavior
 ```
 
-### 🎯 実現可能なシステム例
+### 🎯 Example Systems You Can Build
 
-#### 📈 ビジネスシステム
-- **顧客管理システム**：顧客情報管理・履歴追跡・自動メール送信
-- **経費精算システム**：申請フォーム・承認フロー・自動計算
-- **プロジェクト管理**：タスク管理・進捗可視化・メンバー協働
-- **予約管理システム**：リアルタイム空き状況・自動確認メール
+#### 📈 Business Systems
+- **Customer Management System**: Customer information management, history tracking & automatic email sending
+- **Expense Reimbursement System**: Application forms, approval workflows & automatic calculation
+- **Project Management**: Task management, progress visualization & team collaboration
+- **Reservation Management System**: Real-time availability & automatic confirmation emails
 
-#### 📊 データ分析・レポート  
-- **売上分析ダッシュボード**：リアルタイム売上・トレンド分析
-- **在庫管理**：自動発注アラート・在庫推移グラフ
-- **アンケート集計**：自動集計・結果可視化・回答者管理
-- **勤怠管理**：出退勤記録・残業時間集計・休暇管理
+#### 📊 Data Analysis & Reports  
+- **Sales Analysis Dashboard**: Real-time sales & trend analysis
+- **Inventory Management**: Automatic order alerts & inventory trend graphs
+- **Survey Aggregation**: Automatic tallying, results visualization & respondent management
+- **Attendance Management**: Clock-in/out records, overtime calculation & leave management
 
-### ⏰ 開発時間目安
+### ⏰ Estimated Development Time
 
-| システム規模 | 開発時間 | 機能数 | 複雑度 |
+| System Scale | Dev Time | Features | Complexity |
 |-------------|----------|--------|--------|
-| **シンプル** | 3-5分 | 基本機能のみ | フォーム+データ保存 |
-| **標準** | 5-10分 | 中程度機能 | 分析+レポート+UI |
-| **高機能** | 10-20分 | 高度機能 | AI分析+自動化+連携 |
-| **企業レベル** | 20-30分 | 包括的システム | 権限管理+監査+最適化 |
+| **Simple** | 3-5 min | Basic features only | Form + data storage |
+| **Standard** | 5-10 min | Moderate features | Analysis + reports + UI |
+| **Advanced** | 10-20 min | Advanced features | AI analysis + automation + integration |
+| **Enterprise** | 20-30 min | Comprehensive system | Permission management + audit + optimization |
 
 ---
 
-## 🌟 開発ロードマップ
+## 🌟 Development Roadmap
 
-### Phase 1 ✅ **完了**: 詳細README・初心者対応完全化（2025.08.17）
-- ✅ **包括的ドキュメント作成**：初心者が5分でセットアップ可能
-- ✅ **プラットフォーム別手順明確化**：Windows/macOS/Linux完全対応
-- ✅ **トラブルシューティング統合**：よくある問題TOP5解決策
-- ✅ **ワンクリックコマンド整備**：技術知識不要のインストール
+### Phase 1 ✅ **Complete**: Detailed README & Full Beginner Support (2025.08.17)
+- ✅ **Comprehensive documentation created**: Beginners can set up in 5 minutes
+- ✅ **Platform-specific instructions clarified**: Full support for Windows/macOS/Linux
+- ✅ **Troubleshooting integrated**: Top 5 common issue solutions
+- ✅ **One-click commands prepared**: Installation requiring no technical knowledge
 
-### Phase 2 ✅ **完了**: クロスプラットフォーム完全統合（2025.08.17）
-- ✅ **WebアプリOAuth設定**：JSONアップロード全OS対応
-- ✅ **OAuth重複実行防止**：革新的アルゴリズム全OS移植
-- ✅ **MCP安全更新機能**：既存設定保護システム全OS統合
-- ✅ **エラー自動復旧**：全OS統一エラーハンドリング
-- ✅ **真のプラットフォーム統一**：Windows版同等機能をmacOS/Linux完全実現
+### Phase 2 ✅ **Complete**: Full Cross-Platform Integration (2025.08.17)
+- ✅ **WebApp OAuth setup**: JSON upload for all OS
+- ✅ **OAuth duplicate execution prevention**: Innovative algorithm ported to all OS
+- ✅ **MCP safe update feature**: Existing configuration protection system integrated across all OS
+- ✅ **Automatic error recovery**: Unified error handling across all OS
+- ✅ **True platform unification**: Windows-equivalent features fully realized on macOS/Linux
 
-### Phase 3: 高度機能統合（進行中）🔄
+### Phase 3: Advanced Feature Integration (In Progress) 🔄
 
-**目標：** エンタープライズレベル機能・CI/CD統合
+**Goal:** Enterprise-level features & CI/CD integration
 
-**開発予定機能：**
-- 🔄 **CI/CD統合**：GitHub Actions・自動テスト・デプロイ
-- 🔄 **Docker統合**：コンテナ化自動デプロイ・Kubernetes対応
-- 🔄 **チーム開発機能**：権限管理・コラボレーション・監査ログ
-- 🔄 **パフォーマンス最適化**：大規模データ処理・高速化
+**Planned features:**
+- 🔄 **CI/CD Integration**: GitHub Actions, automated testing & deployment
+- 🔄 **Docker Integration**: Containerized auto-deployment & Kubernetes support
+- 🔄 **Team Development Features**: Permission management, collaboration & audit logs
+- 🔄 **Performance Optimization**: Large-scale data processing & speed improvements
 
-### Phase 4: 多言語・グローバル展開（予定）🌐
+### Phase 4: Multilingual & Global Expansion (Planned) 🌐
 
-- **多言語対応**：英語・中国語・韓国語・スペイン語UI
-- **地域最適化**：各国Google Workspace設定対応
-- **グローバルコミュニティ**：各国開発者コミュニティ構築
-- **エンタープライズ版**：企業向け高度機能・SLA対応
+- **Multilingual Support**: English, Chinese, Korean & Spanish UI
+- **Regional Optimization**: Google Workspace configuration support for each country
+- **Global Community**: Building developer communities in each country
+- **Enterprise Edition**: Advanced features for businesses & SLA support
 
-### Phase 5: AI/ML・次世代技術統合（予定）🤖
+### Phase 5: AI/ML & Next-Generation Technology Integration (Planned) 🤖
 
-- **予測分析**：AIによるデータ傾向予測・自動レポート
-- **自動最適化**：システム自動改善・パフォーマンス向上
-- **音声制御**：「売上レポート作って」音声指示対応
-- **ビジュアルプログラミング**：ドラッグ&ドロップでのシステム作成
-- **GPT-4o統合**：高度なコード生成・自動デバッグ機能
-
----
-
-## 🤝 コントリビューション・サポート
-
-### 🌟 コミュニティ貢献募集
-
-macOS/Linux版の機能完全化にコミュニティの力をお借りしています：
-
-**求める貢献：**
-- 🍎 **macOS環境**でのテスト・フィードバック
-- 🐧 **Linux環境**でのテスト・フィードバック  
-- 🎨 **UI/UX改善**提案
-- 🌐 **多言語翻訳**協力
-- 📚 **ドキュメント改善**
-- 💡 **新機能アイデア**
-
-**貢献方法：**
-1. 🐛 **GitHub Issues**：バグ報告・機能要請
-2. 🔧 **Pull Requests**：コード貢献
-3. 💬 **GitHub Discussions**：アイデア・質問・サポート
-
-### 📞 サポート窓口
-
-**技術的問題：**
-- 📄 **TROUBLESHOOTING.md**：詳細トラブルシューティング
-- 🔧 **GitHub Issues**：バグ報告専用
-- 💭 **GitHub Discussions**：質問・相談
-
-**コミュニティ：**
-- 🌟 **Star this repo**：プロジェクト支援
-- 🔄 **Share & Fork**：拡散・改良歓迎
-- 📢 **SNS投稿**：体験談・作品紹介
+- **Predictive Analytics**: AI-powered data trend prediction & automatic reports
+- **Auto-Optimization**: Automatic system improvement & performance enhancement
+- **Voice Control**: Voice command support like "Create a sales report"
+- **Visual Programming**: System creation with drag & drop
+- **GPT-4o Integration**: Advanced code generation & auto-debugging features
 
 ---
 
-## 🎊 まとめ
+## 🤝 Contributing & Support
 
-**Claude-AppsScript-Pro v3.1.0** は、Google Apps Script開発の新時代を切り開く革命的プラットフォームです。
+### 🌟 Community Contributions Welcome
 
-### ✨ 実現する価値
+We welcome community contributions to help complete features for macOS/Linux:
 
-**開発者にとって：**
-- 🚀 **10倍の開発効率**：AI自律システム・リアルタイムデバッグ
-- 💡 **創造性の解放**：技術的制約から解放されたアイデア実現
-- 🎓 **スキル向上**：高度なシステム開発を通じた学習効果
+**Contributions we're looking for:**
+- 🍎 Testing & feedback on **macOS environments**
+- 🐧 Testing & feedback on **Linux environments**  
+- 🎨 **UI/UX improvement** suggestions
+- 🌐 **Multilingual translation** assistance
+- 📚 **Documentation improvements**
+- 💡 **New feature ideas**
 
-**ビジネスにとって：**
-- ⏰ **即座のシステム構築**：アイデアから運用まで数分
-- 💰 **コスト削減**：開発外注不要・内製化支援
-- 📈 **競争優位性**：迅速なシステム開発による市場優位
+**How to contribute:**
+1. 🐛 **GitHub Issues**: Bug reports & feature requests
+2. 🔧 **Pull Requests**: Code contributions
+3. 💬 **GitHub Discussions**: Ideas, questions & support
 
-**社会にとって：**
-- 🌐 **技術民主化**：プログラミング初心者でも高度システム開発
-- 🚀 **イノベーション加速**：アイデア実現の障壁撤廃
-- 🤝 **コミュニティ価値**：オープンソースによる知識共有
+### 📞 Support
 
-### 🔥 今すぐ始めましょう！
+**Technical issues:**
+- 📄 **TROUBLESHOOTING.md**: Detailed troubleshooting guide
+- 🔧 **GitHub Issues**: Bug reports
+- 💭 **GitHub Discussions**: Questions & consultation
+
+**Community:**
+- 🌟 **Star this repo**: Support the project
+- 🔄 **Share & Fork**: Spreading the word & improvements welcome
+- 📢 **Social media posts**: Share your experiences & creations
+
+---
+
+## 🎊 Summary
+
+**Claude-AppsScript-Pro v3.1.0** is a revolutionary platform that opens a new era in Google Apps Script development.
+
+### ✨ Value Delivered
+
+**For developers:**
+- 🚀 **10x development efficiency**: AI autonomous system & real-time debugging
+- 💡 **Unleash creativity**: Realize ideas free from technical constraints
+- 🎓 **Skill improvement**: Learning through advanced system development
+
+**For businesses:**
+- ⏰ **Instant system construction**: From idea to production in minutes
+- 💰 **Cost reduction**: No outsourcing needed & in-house development support
+- 📈 **Competitive advantage**: Market leadership through rapid system development
+
+**For society:**
+- 🌐 **Technology democratization**: Even programming beginners can build advanced systems
+- 🚀 **Innovation acceleration**: Removing barriers to realizing ideas
+- 🤝 **Community value**: Knowledge sharing through open source
+
+### 🔥 Get Started Now!
 
 ```powershell
-# Windows（最推奨・PowerShell実行ポリシー自動修正付き）
+# Windows (Most Recommended - With Automatic PowerShell Execution Policy Fix)
 powershell -Command "& { Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force; git clone https://github.com/overdozer1124/claude-appsscript-pro.git; cd claude-appsscript-pro; npm install; .\install-auto.bat }"
 ```
 
 ```bash
-# macOS/Linux（完全版・2025.08.17実装完了！）
+# macOS/Linux (Full Version - Completed 2025.08.17!)
 git clone https://github.com/overdozer1124/claude-appsscript-pro.git && cd claude-appsscript-pro && npm install && chmod +x install-complete.sh && ./install-complete.sh
 ```
 
 ```bash
-# 全OS統合版（最高機能版・推奨）
+# All OS Unified Version (Full Feature Version - Recommended)
 git clone https://github.com/overdozer1124/claude-appsscript-pro.git && cd claude-appsscript-pro && npm install && node install-complete.js
 ```
 
-**🎯 5分後、あなたは真のクロスプラットフォーム統一・次世代Google Apps Script開発を体験しています。**
+**🎯 In 5 minutes, you'll be experiencing true cross-platform unified, next-generation Google Apps Script development.**
 
 ---
 
 
-**📋 要件**: Node.js 18.0.0+ | **🏷️ ライセンス**: MIT | **⭐ バージョン**: v3.1.0
+**📋 Requirements**: Node.js 18.0.0+ | **🏷️ License**: MIT | **⭐ Version**: v3.1.0
 
